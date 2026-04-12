@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ettasky Wedding · 8.16.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wedding.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">The Ettasky Wedding</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#wedding">Wedding</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#hotel">Hotel</a></li>
+    <li><a href="#transportation">Transportation</a></li>
+    <li><a href="#registry">Registry</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMenu()">Home</a>
+  <a href="#wedding" onclick="closeMenu()">Wedding</a>
+  <a href="#events" onclick="closeMenu()">Events</a>
+  <a href="#hotel" onclick="closeMenu()">Hotel</a>
+  <a href="#transportation" onclick="closeMenu()">Transportation</a>
+  <a href="#registry" onclick="closeMenu()">Registry</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════ HERO -->
+<section id="home" class="hero" style="max-width:100%; padding-top:7rem;">
+  <h1 class="hero-names">
+    Annalise<span class="hero-ampersand">&amp;</span>Nathanael
+  </h1>
+  <div class="hero-sub">The Ettasky Wedding</div>
+  <p class="hero-date">August 16, 2026 &nbsp;·&nbsp; Chicago, Illinois</p>
+  <p class="hero-tagline">We're finally getting married! 🎉</p>
+  <p class="hero-blurb" style="margin-top:0.75rem;">
+    We've got a whole weekend of fun events planned and we want <em style="color:var(--lavender);">you</em> there for all of it.
+  </p>
+  <p class="hero-story">
+    It started with a first date on August 24th, 2021 — and 1,453 days later, here we are. From Tinder, to working in the parks, to moving across the country together, we've shared the highs, survived the lows, and somehow ended up more in love than ever. Now we're officially making it official, and we couldn't imagine celebrating without you.
+  </p>
+</section>
+
+<!-- ═══════════════════════════════════════════ WEDDING DETAILS -->
+<div class="alt-bg bg-1" id="wedding">
+  <div class="inner">
+    <span class="section-eyebrow ey-blue">The Big Day</span>
+    <h2 class="section-title">Wedding <em>Details</em></h2>
+    <div class="divider div-blue"></div>
+
+    <div class="details-shapes">
+
+      <!-- Date + Time: Circle -->
+      <div class="detail-shape shape-circle ds-blue">
+        <div class="d-icon">💍</div>
+        <div class="d-label">Date &amp; Time</div>
+        <div class="d-value">Sunday, Aug 16<br>4:00 PM</div>
+        <div class="d-sub">Please be seated by 3:30 PM — ceremony starts promptly!</div>
+      </div>
+
+      <!-- Venue: Hexagon -->
+      <div class="detail-shape shape-hexagon ds-olive">
+        <div class="d-icon">📍</div>
+        <div class="d-label">Venue</div>
+        <div class="d-value">The Walden</div>
+        <div class="d-sub">
+          <a href="https://maps.google.com/?q=2145+W+Walnut+St,+Chicago,+IL+60612" target="_blank">
+            2145 W Walnut St<br>Chicago, IL 60612 ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Dress Code: Diamond -->
+      <div class="detail-shape shape-diamond ds-navy">
+        <div class="d-icon">👗</div>
+        <div class="d-label">Dress Code</div>
+        <div class="d-value">Cocktail Attire</div>
+        <div class="d-sub">
+          <a href="https://pin.it/1b98UFMGT" target="_blank">Pinterest inspo ↗</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RSVP CTA -->
+    <div class="rsvp-cta">
+      <button class="btn-rsvp" onclick="openRsvpModal()">RSVP Here 💌</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ RSVP MODAL -->
+<div class="modal-overlay" id="rsvp-modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeRsvpModal()">✕</button>
+    <h2>RSVP</h2>
+    <p class="modal-sub">Enter your name exactly as it appears on your invitation.</p>
+
+    <!-- Step 1: Name Lookup -->
+    <div id="name-lookup-section">
+      <div class="name-lookup">
+        <input type="text" id="name-input" placeholder="Your full name (e.g. Jane Smith)" autocomplete="off" />
+        <button class="btn-lookup" onclick="lookupGuest()">Find Me →</button>
+      </div>
+      <div class="lookup-error" id="lookup-error"></div>
+    </div>
+
+    <!-- Step 2: RSVP Form (populated by JS) -->
+    <div id="rsvp-form-section" style="display:none;">
+      <div id="rsvp-form-content"></div>
+    </div>
+
+    <!-- Step 3: Confirmation -->
+    <div class="rsvp-confirmation" id="rsvp-confirmation">
+      <div class="conf-icon">🎉</div>
+      <h3>You're all set!</h3>
+      <p>Thanks for RSVPing — we can't wait to celebrate with you. See you in August!</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ WEEKEND SCHEDULE -->
+<section id="events">
+  <span class="section-eyebrow ey-gold">Weekend Schedule</span>
+  <h2 class="section-title">The Full <em style="color:var(--gold)">Weekend</em></h2>
+  <div class="divider div-gold"></div>
+  <p style="font-size:0.95rem; opacity:0.7; margin-bottom:3rem;">First and foremost — <strong>we hope you'll join us for the wedding on Sunday!</strong> That's the reason we're all here and the moment we've been waiting for. Since many of you are traveling, we wanted to make the most of the trip and put together some fun optional events throughout the weekend. Come to as many (or as few) as you'd like — no pressure, just good times!</p>
+
+  <!-- FRIDAY -->
+  <div class="day-block">
+    <div class="day-header day-friday">
+      <span class="day-label">Friday · August 14</span>
+    </div>
+    <div class="event-card ev-blue">
+      <div class="event-tag">Evening &nbsp;·&nbsp; ~8:00 PM</div>
+      <div class="event-title">Welcome Hang @ Dave &amp; Buster's 🎮</div>
+      <div class="event-detail">
+        Consider this our unofficial welcome party! Come hang out with us and fellow guests, play some games, and kick off the weekend together. It's a laid-back, no-fuss evening — just good company and good vibes. Please note this is an independent outing, so everyone covers their own food, drinks, and games.
+      </div>
+    </div>
+  </div>
+
+  <!-- SATURDAY -->
+  <div class="day-block">
+    <div class="day-header day-saturday">
+      <span class="day-label">Saturday · August 15</span>
+    </div>
+    <div class="event-card ev-olive">
+      <div class="event-tag">Morning &amp; Afternoon &nbsp;·&nbsp; On Your Own</div>
+      <div class="event-title">Explore the Area 🌆</div>
+      <div class="event-detail">
+        The world is your oyster! If you're staying near the hotel block, the Rosemont area has plenty to offer — highlights include the <strong>Fashion Outlets of Chicago</strong>, an AMC theater, and <strong><a href="https://www.expstudio.com/" target="_blank" style="color:var(--olive);">EXP ↗</a></strong>, a super fun immersive VR experience right next to the hotel. Heading into the city? You're in luck — this weekend is the <strong><a href="https://www.chicago.gov/city/en/depts/dca/supp_info/air_water_show.html" target="_blank" style="color:var(--olive);">Chicago Air &amp; Water Show ↗</a></strong>, one of the largest free air shows in the country!
+      </div>
+    </div>
+    <div class="event-card ev-navy" style="margin-top:1rem;">
+      <div class="event-tag">Evening &nbsp;·&nbsp; 6:00 PM First Pitch</div>
+      <div class="event-title">Chicago Dogs Baseball Game ⚾</div>
+      <div class="event-detail">
+        Join us for a night at the ballpark with the <a href="https://thechicagodogs.com/team/about-us/" target="_blank" style="color:var(--navy);">Chicago Dogs ↗</a>! It's <strong>Star Wars Night</strong> with fireworks after the game — a perfect Saturday night.
+      </div>
+      <div class="event-note">
+        🎟️ <strong>Limited seats — first come, first served!</strong> Please RSVP as soon as possible so we can reserve your spot. Once we're full, we're full!
+      </div>
+    </div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div class="day-block">
+    <div class="day-header day-sunday">
+      <span class="day-label">Sunday · August 16</span>
+    </div>
+    <div class="event-card ev-gold">
+      <div class="event-tag">The Main Event &nbsp;·&nbsp; 4:00 PM</div>
+      <div class="event-title">The Wedding 💍</div>
+      <div class="event-detail">
+        Ceremony begins promptly at 4:00 PM. Please plan to arrive by 3:30 PM and be in your seats.<br><br>
+        <strong>The Walden</strong> &nbsp;·&nbsp; <a href="https://maps.google.com/?q=2145+W+Walnut+St,+Chicago,+IL+60612" target="_blank" style="color:var(--gold);">2145 W Walnut St, Chicago, IL 60612 ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ HOTEL -->
+<div class="alt-bg bg-4" id="hotel">
+  <div class="inner">
+    <span class="section-eyebrow ey-navy">Where to Stay</span>
+    <h2 class="section-title">Hotel &amp; <em style="color:var(--navy)">Lodging</em></h2>
+    <div class="divider div-navy"></div>
+
+    <div class="hotel-card">
+      <div class="hotel-badge">Recommended</div>
+      <div class="hotel-name">The Rose, Rosemont</div>
+      <div class="hotel-info">
+        <a href="https://maps.google.com/?q=5200+Pearl+St,+Rosemont,+IL+60018" target="_blank" style="color:var(--navy);">5200 Pearl St, Rosemont, IL 60018 ↗</a>
+        &nbsp;·&nbsp;
+        <a href="tel:8472604770" style="color:var(--navy);">847-260-4770</a>
+      </div>
+      <div class="hotel-info" style="margin-top:1rem; line-height:1.9;">
+        This is our top recommendation — it's a fantastic hotel and the location that best serves everything happening over the weekend. We've reserved a room block at a discounted group rate for the nights of <strong>August 14–17, 2026</strong>. Spots are limited, so please book by <strong>July 15, 2026</strong> to lock in your rate. Reference the block name <em>Annalise Lasky &amp; Nathanael Ettel's Wedding</em> when booking.
+      </div>
+      <div class="transport-list" style="margin-top:1.5rem; margin-bottom:1.5rem;">
+        <p>Complimentary airport shuttle to and from the airport — a huge perk if you're flying in!</p>
+        <p>Complimentary daytime parking in the front lot; discounted overnight parking available for $20/vehicle/night</p>
+      </div>
+      <a href="https://group.tapestrycollection.com/x19hu6" target="_blank" class="btn">Book Your Room ↗</a>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <h3 style="font-family:'Fraunces',serif; font-size:1.3rem; font-weight:700; color:var(--ink); margin-bottom:0.75rem;">Other Lodging Options</h3>
+      <p style="font-size:0.9rem; opacity:0.7; line-height:1.9;">
+        We chose the Rosemont/O'Hare area intentionally — the majority of our weekend events are happening there, and the area has a ton to offer for everyone. That said, the wedding venue is downtown, so there are plenty of great options in the city as well if you'd prefer to be closer to that end of things!
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ TRANSPORTATION -->
+<section id="transportation">
+  <span class="section-eyebrow ey-olive">Getting Around</span>
+  <h2 class="section-title"><em style="color:var(--olive)">Transportation</em></h2>
+  <div class="divider div-olive"></div>
+
+  <div class="event-card ev-olive" style="margin-bottom:1.5rem;">
+    <div class="event-tag">Hotel Perk 🚌</div>
+    <div class="event-title">Complimentary Shuttle Service</div>
+    <div class="event-detail">
+      The Rose offers a complimentary shuttle within a <strong>3-mile radius</strong> of the hotel — and this is a big one. That range covers all of the Friday and Saturday evening events, plus CTA and Metra stops that connect you straight into the city. Whether you want to explore Chicago's museums, catch the Air &amp; Water Show, or just wander, the shuttle makes it easy to get out and back without needing a car. It also runs to and from the airport, so if you're flying in, you're covered from the moment you land.
+    </div>
+  </div>
+
+  <div class="transport-list">
+    <p>Friday and Saturday evening events are within walking distance of the hotel — or just hop on the shuttle</p>
+    <p>Use the hotel shuttle to reach CTA/Metra stops for easy access into the city all weekend</p>
+    <p>Getting to the wedding venue on Sunday is on your own — rideshare is recommended. <strong>We'll be sharing an Uber code soon!</strong></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ REGISTRY -->
+<div class="alt-bg bg-3" id="registry">
+  <div class="inner">
+    <span class="section-eyebrow ey-gold">Gifts</span>
+    <h2 class="section-title">Our <em style="color:var(--gold)">Registry</em></h2>
+    <div class="divider div-gold"></div>
+    <div class="registry-box">
+      <p>Your presence is truly the greatest gift — but if you'd like to celebrate us with something more, we're registered here:</p>
+      <a href="#" class="btn">View Our Registry ↗</a>
+      <p style="margin-top:1.25rem; font-size:0.8rem; opacity:0.5; font-family:'Inter',sans-serif; font-style:normal;">Link coming soon</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ FAQ -->
+<section id="faq">
+  <span class="section-eyebrow ey-lavender">Questions?</span>
+  <h2 class="section-title">Frequently Asked <em style="color:var(--lavender)">Questions</em></h2>
+  <div class="divider div-lavender"></div>
+
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What is the dress code?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">The dress code is <strong>cocktail attire</strong>. Think dresses, jumpsuits, dress pants and a blazer — polished but not black tie. Need inspiration? <a href="https://pin.it/1b98UFMGT" target="_blank" style="color:var(--blue);">Check out our Pinterest board ↗</a></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Are children welcome?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">We love your little ones, but our wedding is an adults-only celebration. We hope this gives everyone a chance to let loose and enjoy the night!</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Will there be parking at the venue?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">Yes! The Walden has an attached 26-car lot available for guests. Please note that <strong>all vehicles must be removed at the end of the night</strong> — overnight parking is not permitted. There is also plenty of free street parking in the surrounding area if the lot fills up.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Can I bring a plus-one?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">We're keeping our celebration intimate, so we've put a lot of thought into our guest list. Your invitation will specify whether a plus-one has been included for you — we appreciate your understanding!</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What's the RSVP deadline?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-answer">Please RSVP by <strong>July 24, 2026</strong>. We'd love to have an accurate headcount as early as possible, so the sooner the better!</div>
+    </div>
+
+  </div>
+
+  <p style="margin-top:2rem; font-size:0.88rem; opacity:0.6; font-style:italic;">Still have questions? Reach out to us directly — we're happy to help!</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════ FOOTER -->
+<footer>
+  <div class="footer-names">Annalise &amp; Nathanael</div>
+  <p>August 16, 2026 &nbsp;·&nbsp; Chicago, Illinois</p>
+  <p style="margin-top:0.75rem; font-size:0.72rem; opacity:0.45;">Made with love ♥</p>
+</footer>
+
+<script src="wedding.js"></script>
+</body>
+</html>
