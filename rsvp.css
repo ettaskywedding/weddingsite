@@ -1,0 +1,390 @@
+/* ── RSVP PAGE ── */
+
+.rsvp-page-header {
+  background: var(--forest);
+  padding: 7rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.rsvp-page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 20% 50%, rgba(209,141,168,0.3) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 40%, rgba(120,147,197,0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 50% 90%, rgba(225,204,61,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.rsvp-page-header-inner {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.rsvp-page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin: 0.5rem 0 1rem;
+}
+
+.rsvp-page-sub {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+}
+
+/* ── BODY ── */
+.rsvp-page-body {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* ── CARDS ── */
+.rsvp-card {
+  background: #fff;
+  border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--pink);
+  padding: 2.25rem;
+}
+
+.rsvp-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 0.25rem;
+}
+
+.rsvp-card-sub {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  margin-bottom: 1.75rem;
+}
+
+/* ── NAME FIELDS ── */
+.name-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 480px) { .name-fields { grid-template-columns: 1fr; } }
+
+/* ── FIELD GROUPS ── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.field-group label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field-group input,
+.field-group select,
+.field-group textarea {
+  padding: 0.7rem 1rem;
+  border: 2px solid #ccc;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: #fff;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.field-group input:focus,
+.field-group select:focus,
+.field-group textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.field-group textarea { resize: vertical; }
+
+.optional {
+  font-weight: 400;
+  opacity: 0.5;
+  font-size: 0.78rem;
+}
+
+.field-hint {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.73rem;
+  opacity: 0.5;
+  margin-top: 0.15rem;
+}
+
+/* ── LOOKUP BUTTON ── */
+.btn-find {
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--forest);
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--pink);
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+.btn-find:hover { background: var(--pink); box-shadow: 4px 4px 0 var(--forest); }
+
+/* ── ERROR ── */
+.lookup-error {
+  display: none;
+  padding: 0.75rem 1rem;
+  background: #fff0f0;
+  border-left: 3px solid var(--red);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  color: var(--red);
+  margin-bottom: 0.75rem;
+}
+
+/* ── GREETING BAR ── */
+.rsvp-greeting-bar {
+  background: var(--forest);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.5;
+  margin: -2.25rem -2.25rem 2rem;
+}
+
+/* ── FORM SECTIONS ── */
+.form-section {
+  border: 2px solid var(--ink);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.form-section-header {
+  padding: 0.85rem 1.25rem;
+}
+
+.fsh-forest  { background: var(--forest); color: #fff; }
+.fsh-yellow  { background: var(--yellow); color: var(--ink); }
+.fsh-blue    { background: var(--blue);   color: #fff; }
+.fsh-pink    { background: var(--pink);   color: #fff; }
+.fsh-green   { background: var(--green);  color: #fff; }
+
+.form-section-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.form-section-meta {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  opacity: 0.85;
+  display: block;
+  margin-top: 0.1rem;
+}
+
+.form-section-body {
+  padding: 1.5rem 1.25rem;
+  background: #fafafa;
+}
+
+.info-blurb {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.87rem;
+  opacity: 0.75;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* ── RADIO OPTIONS ── */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  padding: 0.65rem 1rem;
+  border: 2px solid #ddd;
+  background: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: border-color 0.15s, background 0.15s;
+}
+.radio-option:hover { border-color: var(--blue); }
+.radio-option input[type="radio"] {
+  width: 16px; height: 16px;
+  accent-color: var(--forest);
+  flex-shrink: 0;
+  padding: 0; border: none;
+}
+.radio-option:has(input:checked) {
+  border-color: var(--forest);
+  background: #f4f7ee;
+}
+
+/* ── DECLINE MESSAGE ── */
+.decline-message {
+  display: none;
+  background: #fff8f0;
+  border-left: 4px solid var(--pink);
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.decline-message a { color: var(--pink); }
+
+/* ── SEATS BANNER ── */
+.seats-banner {
+  background: #f4f7ee;
+  border-left: 4px solid var(--green);
+  padding: 0.75rem 1rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--forest);
+  margin-bottom: 1.25rem;
+}
+
+/* ── GUEST ROWS ── */
+.guest-row {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.guest-row-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-bottom: 0.75rem;
+}
+
+.guest-row-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.guest-row-fields input,
+.guest-row-fields select {
+  padding: 0.55rem 0.75rem;
+  border: 1.5px solid #ccc;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  width: 100%;
+  background: #fff;
+}
+.guest-row-fields input:focus,
+.guest-row-fields select:focus { outline: none; border-color: var(--blue); }
+
+@media (max-width: 480px) { .guest-row-fields { grid-template-columns: 1fr; } }
+
+/* ── SUBMIT ── */
+.submit-row {
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.btn-submit {
+  padding: 1rem 3rem;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 var(--forest);
+  transition: background 0.2s;
+}
+.btn-submit:hover { background: var(--forest); box-shadow: 5px 5px 0 var(--red); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.submit-hint {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  opacity: 0.45;
+  margin-top: 0.75rem;
+}
+
+/* ── CONFIRMATION ── */
+.rsvp-confirmation {
+  text-align: center;
+  padding: 3.5rem 2rem;
+  box-shadow: 6px 6px 0 var(--yellow);
+}
+
+.conf-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+
+.rsvp-confirmation h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--forest);
+  margin-bottom: 0.75rem;
+}
+
+.rsvp-confirmation p {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.92rem;
+  opacity: 0.7;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  background: var(--forest);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 var(--pink);
+  transition: background 0.2s;
+}
+.btn-back:hover { background: var(--pink); }

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP · The Ettasky Wedding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Lora:ital,wght@0,400;0,600;1,400&family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wedding.css">
+<link rel="stylesheet" href="rsvp.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">The Ettasky Wedding</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="index.html#wedding" onclick="closeMenu()">Wedding</a>
+  <a href="index.html#events" onclick="closeMenu()">Events</a>
+  <a href="index.html#hotel" onclick="closeMenu()">Hotel</a>
+  <a href="index.html#transportation" onclick="closeMenu()">Transportation</a>
+  <a href="index.html#registry" onclick="closeMenu()">Registry</a>
+  <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
+  <a href="rsvp.html" style="color:var(--yellow);">RSVP</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="rsvp-page-header">
+  <div class="rsvp-page-header-inner">
+    <span class="section-eyebrow ey-yellow">August 16, 2026</span>
+    <h1 class="rsvp-page-title">RSVP</h1>
+    <p class="rsvp-page-sub">Kindly respond by <strong>July 24th, 2026</strong>. Enter your first and last name to get started.</p>
+  </div>
+</div>
+
+<!-- RSVP BODY -->
+<div class="rsvp-page-body">
+
+  <!-- STEP 1: NAME LOOKUP -->
+    <div class="rsvp-card" id="step-lookup">
+      <h2 class="rsvp-card-title">Find Your Invitation</h2>
+      <p class="rsvp-card-sub">Enter the name exactly as it appears on your invitation.</p>
+
+      <div class="name-fields">
+        <div class="field-group" style="width:100%;">
+          <label for="household-name">Name on Invitation</label>
+          <input
+            type="text"
+            id="household-name"
+            placeholder="e.g. The Baker Family or Austin and Mia"
+            autocomplete="name"
+          />
+        </div>
+      </div>
+
+      <div class="lookup-error" id="lookup-error"></div>
+
+      <button class="btn-find" onclick="lookupGuest()">
+        Find My Invitation →
+      </button>
+    </div>
+
+  <!-- STEP 2: RSVP FORM -->
+  <div class="rsvp-card" id="step-form" style="display:none;">
+
+    <div class="rsvp-greeting-bar" id="greeting-bar"></div>
+
+    <form id="rsvp-form" onsubmit="submitForm(event)">
+
+      <!-- ── ATTENDING? ── -->
+      <div class="form-section">
+        <div class="form-section-header fsh-pink">
+          <h3>Will you be able to attend? 💌</h3>
+        </div>
+        <div class="form-section-body">
+          <div class="field-group" style="margin-bottom:0;">
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="attending" value="Yes" required onchange="handleAttending('Yes')" />
+                <span>Yes, we'll be there!</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="attending" value="No" onchange="handleAttending('No')" />
+                <span>Unfortunately, we can't make it</span>
+              </label>
+            </div>
+            <!-- Shown if No -->
+            <div class="decline-message" id="decline-message">
+              We are so sorry to hear that — you will be dearly missed and we will be thinking of you. If you feel like it, you're always welcome to celebrate with us through our <a href="#" target="_blank">registry</a>. 💕
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── REST OF FORM (shown if Yes) ── -->
+      <div id="yes-section" style="display:none;">
+
+        <!-- Party size -->
+        <div class="form-section">
+          <div class="form-section-header fsh-forest">
+            <h3>Party Size</h3>
+            <span class="form-section-meta">Including yourself</span>
+          </div>
+          <div class="form-section-body">
+            <div class="seats-banner" id="seats-banner"></div>
+            <div class="field-group" style="margin-bottom:0;">
+              <label for="party-size">How many seats will you be reserving for the wedding weekend?</label>
+              <select id="party-size" onchange="updateGuestRows(this.value)">
+                <!-- populated by JS -->
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guest names + meal choices -->
+        <div class="form-section" id="guest-section">
+          <div class="form-section-header fsh-blue">
+            <h3>Guest Details</h3>
+            <span class="form-section-meta">Name and dinner choice for each person</span>
+          </div>
+          <div class="form-section-body">
+            <div id="guest-rows-container"></div>
+          </div>
+        </div>
+
+        <!-- Dogs game -->
+        <div class="form-section">
+          <div class="form-section-header fsh-green">
+            <h3>Chicago Dogs Game ⚾</h3>
+            <span class="form-section-meta">Saturday · August 15 · 6:00 PM</span>
+          </div>
+          <div class="form-section-body">
+            <div class="info-blurb">
+              Star Wars Night with fireworks! We have a <strong>limited number of tickets — first come, first served.</strong> Tickets are on us; food and drinks at the game are on you.
+            </div>
+            <div class="field-group" style="margin-bottom:0;">
+              <label>Will your entire party be joining for the Dogs Game?</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="dogs-attending" value="Yes" required />
+                  <span>⚾ Yes, the whole crew is in!</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="dogs-attending" value="Partial" />
+                  <span>Some of us will be there</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="dogs-attending" value="No" />
+                  <span>We'll sit this one out</span>
+                </label>
+              </div>
+              <div class="field-group" id="dogs-count-group" style="display:none; margin-top:1rem;">
+                <label for="dogs-count">How many people from your party will attend the Dogs Game?</label>
+                <select id="dogs-count"></select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dietary restrictions -->
+        <div class="form-section">
+          <div class="form-section-header fsh-yellow">
+            <h3>Dietary Restrictions</h3>
+          </div>
+          <div class="form-section-body">
+            <div class="field-group" style="margin-bottom:0;">
+              <label for="dietary">Any dietary restrictions we should know about? <span class="optional">(optional)</span></label>
+              <input type="text" id="dietary" placeholder="e.g. severe nut allergy — leave blank if none" />
+              <p class="field-hint">Exact menu preparation will vary. Please note severe restrictions only.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bonus + notes -->
+        <div class="form-section">
+          <div class="form-section-header fsh-pink">
+            <h3>A Little Extra ✨</h3>
+          </div>
+          <div class="form-section-body">
+            <div class="field-group">
+              <label for="love-song">🎵 Bonus question: What is your favorite love song?</label>
+              <input type="text" id="love-song" placeholder="Don't hold back..." />
+            </div>
+            <div class="field-group" style="margin-bottom:0;">
+              <label for="notes">Any other questions, comments, or well wishes? <span class="optional">(optional)</span></label>
+              <textarea id="notes" rows="3" placeholder="We'd love to hear from you!"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn-submit" id="btn-submit">Submit RSVP 💌</button>
+          <p class="submit-hint">Please RSVP by July 24th, 2026</p>
+        </div>
+
+      </div><!-- /yes-section -->
+
+      <!-- Decline submit (shown if No) -->
+      <div id="decline-submit" style="display:none; text-align:center; margin-top:1rem;">
+        <button type="submit" class="btn-submit">Submit</button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- STEP 3: CONFIRMATION -->
+  <div class="rsvp-card rsvp-confirmation" id="step-confirmation" style="display:none;">
+    <div class="conf-icon">🎉</div>
+    <h2 id="conf-title">You're all set!</h2>
+    <p id="conf-message">Thanks for RSVPing — we can't wait to celebrate with you. See you in August!</p>
+    <a href="index.html" class="btn-back">← Back to the wedding site</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-names">Annalise &amp; Nathanael</div>
+  <p>August 16, 2026 · Chicago, Illinois</p>
+  <p style="margin-top:0.75rem; font-size:0.7rem; opacity:0.4;">Made with love ♥</p>
+</footer>
+
+<script src="guests.js"></script>
+<script src="rsvp.js"></script>
+</body>
+</html>
