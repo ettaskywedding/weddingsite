@@ -62,4 +62,5 @@ const GUESTS = [
 { name: "Rookery Bean", seats: 1 },
 { name: "Nico LoSauro", seats: 1 },
 { name: "Zelda Goldin", seats: 1 },
+{ name: "Beth Sher", seats: 2},
 ];
