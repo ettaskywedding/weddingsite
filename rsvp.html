@@ -47,17 +47,19 @@
       <h2 class="rsvp-card-title">Find Your Invitation</h2>
       <p class="rsvp-card-sub">Enter the name exactly as it appears on your invitation.</p>
 
-      <div class="name-fields">
-        <div class="field-group" style="width:100%;">
-          <label for="household-name">Name on Invitation</label>
-          <input
-            type="text"
-            id="household-name"
-            placeholder="e.g. The Baker Family or Austin and Mia"
-            autocomplete="name"
-          />
-        </div>
+      
+    <div class="name-fields">
+      <div class="field-group" style="width:100%; position:relative;">
+        <label for="household-name">Name on Invitation</label>
+        <input
+          type="text"
+          id="household-name"
+          placeholder="e.g. The Baker Family or Austin and Mia"
+          autocomplete="off"
+        />
+        <div id="name-suggestions" class="name-suggestions" style="display:none;"></div>
       </div>
+    </div>
 
       <div class="lookup-error" id="lookup-error"></div>
 
