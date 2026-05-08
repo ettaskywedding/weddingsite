@@ -309,7 +309,7 @@ async function submitForm(e) {
     payload.notes    = document.getElementById('notes').value.trim();
   }
 
-  const btn = document.getElementById('btn-submit');
+  const btn = document.querySelector('#decline-submit button[type="submit"], #btn-submit');
   btn.disabled = true;
   btn.innerHTML = '<span class="btn-spinner"></span> Sending…';
 
@@ -323,7 +323,7 @@ async function submitForm(e) {
     showConfirmation(attending);
   } catch (err) {
     btn.disabled = false;
-    btn.innerHTML = 'Submit RSVP 💌';
+    btn.innerHTML = attending === 'Yes' ? 'Submit RSVP 💌' : 'Submit';
     alert('Submission failed — try again');
     console.error(err);
   }
