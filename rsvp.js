@@ -309,6 +309,10 @@ async function submitForm(e) {
     payload.notes    = document.getElementById('notes').value.trim();
   }
 
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="btn-spinner"></span> Sending…';
+
   try {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
@@ -318,6 +322,8 @@ async function submitForm(e) {
     });
     showConfirmation(attending);
   } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = 'Submit RSVP 💌';
     alert('Submission failed — try again');
     console.error(err);
   }
