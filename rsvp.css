@@ -388,3 +388,36 @@
   transition: background 0.2s;
 }
 .btn-back:hover { background: var(--pink); }
+
+.name-suggestions {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0; right: 0;
+  background: #fff;
+  border: 2px solid var(--forest);
+  border-top: none;
+  box-shadow: 4px 4px 0 var(--pink);
+  z-index: 50;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 0.65rem 1rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  color: var(--ink);
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background 0.12s;
+}
+.suggestion-item:last-child { border-bottom: none; }
+.suggestion-item:hover,
+.suggestion-item.highlighted {
+  background: #f4f7ee;
+  color: var(--forest);
+}
+.suggestion-item strong {
+  color: var(--forest);
+  font-weight: 700;
+}
