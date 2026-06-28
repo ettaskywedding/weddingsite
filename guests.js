@@ -1,5 +1,6 @@
 const GUESTS = [
 { name: "Jane Smith", seats: 3 },
+{ name: "Harrison Fox", seats: 1 },
 { name: "Lenny & Diane", seats: 2 },
 { name: "Karen Shankman", seats: 1 },
 { name: "Patrick Falso & Matt Mika", seats: 2 },
