@@ -67,7 +67,7 @@ const GUESTS = [
 { name: "Katelyn Snider & Liz Sutton", seats: 2 },
 { name: "Brielle Johnson", seats: 1 },
 { name: "Joshua Songster", seats: 1 },
-{ name: "Rookery Bean", seats: 1 },
+{ name: "Rookery Bean", seats: 2 },
 { name: "Nico LoSauro", seats: 1 },
 { name: "Zelda Goldin", seats: 1 },
 { name: "Beth Sher", seats: 2},
