@@ -1,7 +1,7 @@
 const GUESTS = [
 { name: "Jane Smith", seats: 3 },
 { name: "Bobby Jurewicz", seats: 2 },
-{ name: "Luigi", seats: 2 },
+{ name: "Luigi Ricchio", seats: 2 },
 { name: "Deither Ritter", seats: 2 },
 { name: "Emmy Tudor", seats: 2 },
 { name: "Dale and Francine Lasky", seats: 2 },
